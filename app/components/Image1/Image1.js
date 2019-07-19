@@ -98,7 +98,7 @@ export default class Image1 extends Component{
         </View>
         <View style={styles.container}>
             <View style={styles.container1}>
-                <TouchableHighlight onLongPress={this.showList} on={this.classify}>
+                <TouchableHighlight onLongPress={this.showList} onPress={this.classify}>
                     <View style={styles.col1}/>
                 </TouchableHighlight>
                 <TouchableHighlight onLongPress={this.showList} onPress={this.classify}>
