@@ -26,6 +26,14 @@ export default class Image1 extends Component{
         imgIndex: (this.state.imgIndex+1)%3
       })
   }
+  goBack = () => {
+    console.log('Classified')
+    if (this.state.imgIndex > 0){
+        this.setState({
+            imgIndex: (this.state.imgIndex-1)%3
+          })
+    }  
+}
 
   render() {
     return(
@@ -105,6 +113,11 @@ export default class Image1 extends Component{
                     <View style={styles.col2}/>
                 </TouchableHighlight>
             </View>
+            <View style={styles.container2}>
+                <TouchableHighlight onPress={this.goBack} style={styles.circle}>
+                    <Text style={styles.back}>Back</Text>
+                </TouchableHighlight>
+            </View>
             <View style={styles.container1}>
                 <TouchableHighlight onLongPress={this.showList} onPress={this.classify}>
                     <View style={styles.col3}/>
@@ -134,6 +147,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'column',
     },
+    container2: {
+        right: 50,
+        alignSelf: 'flex-end',
+        height:100, 
+        width:100, 
+        borderRadius:100/2
+    },
     col1: {
         width: 60,
         height: 320,
@@ -158,6 +178,19 @@ const styles = StyleSheet.create({
         height: 320,
         backgroundColor: 'pink',
         opacity: 0.4
+    },
+    circle: {
+        backgroundColor:'green',   
+        height:100, 
+        width:100, 
+        borderRadius:100/2
+    },
+    back: {
+        justifyContent:'center', 
+        alignSelf: 'center', 
+        top: 25,
+        fontSize: 30
+
     },
     onmodal: {
         flex: 1,
