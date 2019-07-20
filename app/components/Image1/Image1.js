@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Text, View, AppRegistry, Image, StyleSheet, 
-    TouchableHighlight, Modal, ScrollView, Alert, Dimensions} from 'react-native';
+    TouchableHighlight, Modal, ScrollView, 
+    Alert, Dimensions, TouchableOpacity} from 'react-native';
 import ImageZoom from 'react-native-image-pan-zoom';
+import Toast from 'react-native-root-toast';
 
 var imgArr = [{image:require('../../../Images/casca.jpeg')},
       {image:require('../../../Images/latinha.jpeg')},
@@ -9,12 +11,13 @@ var imgArr = [{image:require('../../../Images/casca.jpeg')},
 
 export default class Image1 extends Component{
   state = {
+      backButton: false,
       modalVisible: false,
       imgIndex: 0
       
   }
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+        this.setState({modalVisible: visible});
   }
   showList = () => {
       console.log('Long Pressed')
@@ -25,6 +28,11 @@ export default class Image1 extends Component{
        this.setState({
         imgIndex: (this.state.imgIndex+1)%3
       })
+      this.showBack()
+  }
+  showBack = () => {
+    this.setState({backButton: true})
+    setTimeout(() => {this.setState({backButton: false})}, 2000)
   }
   goBack = () => {
     console.log('Classified')
@@ -113,10 +121,12 @@ export default class Image1 extends Component{
                     <View style={styles.col2}/>
                 </TouchableHighlight>
             </View>
-            <View style={styles.container2}>
-                <TouchableHighlight onPress={this.goBack} style={styles.circle}>
-                    <Text style={styles.back}>Back</Text>
-                </TouchableHighlight>
+           <View style={styles.container2}>
+           {this.state.backButton ? 
+                <TouchableOpacity onPress={this.goBack}>
+                     <Text style={styles.back}>Undo</Text>
+                </TouchableOpacity>
+            : null}
             </View>
             <View style={styles.container1}>
                 <TouchableHighlight onLongPress={this.showList} onPress={this.classify}>
@@ -148,11 +158,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     container2: {
-        right: 50,
         alignSelf: 'flex-end',
-        height:100, 
-        width:100, 
-        borderRadius:100/2
+        height:50, 
+        width:240, 
     },
     col1: {
         width: 60,
@@ -179,18 +187,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'pink',
         opacity: 0.4
     },
-    circle: {
-        backgroundColor:'green',   
-        height:100, 
-        width:100, 
-        borderRadius:100/2
-    },
     back: {
         justifyContent:'center', 
         alignSelf: 'center', 
-        top: 25,
         fontSize: 30
-
     },
     onmodal: {
         flex: 1,
