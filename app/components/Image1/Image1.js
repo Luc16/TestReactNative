@@ -3,7 +3,6 @@ import { Text, View, AppRegistry, Image, StyleSheet,
     TouchableHighlight, Modal, ScrollView, 
     Alert, Dimensions, TouchableOpacity} from 'react-native';
 import ImageZoom from 'react-native-image-pan-zoom';
-import Toast from 'react-native-root-toast';
 
 var imgArr = [{image:require('../../../Images/casca.jpeg')},
       {image:require('../../../Images/latinha.jpeg')},
