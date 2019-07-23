@@ -47,54 +47,76 @@ export default class Image1 extends Component{
     <View>
         <Modal animationType="fade" 
         transparent={true} 
-        style={styles.modal}
         visible={this.state.modalVisible} 
         onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
             <View style={styles.onmodal}>
-                <View>
-                    <ScrollView>
-                        <Text>Lista do tipo de lixo:</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
-                        <Text>lixo</Text>
+                <ScrollView>
+                    <Text>Lista do tipo de lixo:</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
+                    <Text>lixo</Text>
                     </ScrollView>
                     <TouchableHighlight
                         onPress={() => {
@@ -103,11 +125,10 @@ export default class Image1 extends Component{
                         <Text style={styles.modText}>FECHAR</Text>
                     </TouchableHighlight>
                 </View>
-            </View>
         </Modal>
         <View style={styles.pos}>
         <ImageZoom cropWidth={Dimensions.get('window').width} cropHeight={Dimensions.get('window').height}
-            imageWidth={360} imageHeight={360} >
+            imageWidth={Dimensions.get('window').width} imageHeight={Dimensions.get('window').width} >
             <Image style={styles.im1} source={imgArr[this.state.imgIndex].image}/>
           </ImageZoom>
         </View>
@@ -142,8 +163,8 @@ export default class Image1 extends Component{
 const styles = StyleSheet.create({
     im1: {
         alignSelf: 'center',
-        width: 360,
-        height: 360,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width,
     },
     pos: {
         position:'absolute' 
@@ -163,26 +184,26 @@ const styles = StyleSheet.create({
     },
     col1: {
         width: 60,
-        height: 320,
+        height: Dimensions.get('window').height*0.5,
         backgroundColor: 'red',
         opacity: 0.4
     },
     col2: {
         width: 60,
-        height: 320,
+        height: Dimensions.get('window').height*0.5,
         backgroundColor: 'black',
         opacity: 0.4
     },
     
     col3: {
         width: 60,
-        height: 320,
+        height: Dimensions.get('window').height*0.5,
         backgroundColor: 'blue',
         opacity: 0.4
     },
     col4: {
         width: 60,
-        height: 320,
+        height: Dimensions.get('window').height*0.5,
         backgroundColor: 'pink',
         opacity: 0.4
     },
@@ -195,13 +216,21 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height*0.3,
+        top: Dimensions.get('window').height*0.1,
+        bottom: Dimensions.get('window').height*0.2
     },
     modal: {
-        width: 100,
-        height: 50,
+        alignSelf: 'center',
+        top: Dimensions.get('window').height*0.1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height*0.5,
+        bottom: Dimensions.get('window').height*0.2
     },
     modText: {
+        bottom: Dimensions.get('window').height*0.15,
         color: 'blue',
         fontSize: 20,
         textAlign: 'center'
