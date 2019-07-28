@@ -3,6 +3,7 @@ import { Text, View, AppRegistry, Image, StyleSheet,
     TouchableHighlight, Modal, Animated, 
     Alert, Dimensions, TouchableOpacity, Easing} from 'react-native';
 import ImageZoom from 'react-native-image-pan-zoom';
+import * as firebase from 'firebase'
 
 var {width, height} = Dimensions.get('window')
 var imgArr = [{image:require('../../../Images/casca.jpeg')},
@@ -19,6 +20,7 @@ export default class Image1 extends Component{
         this.imageScale = new Animated.Value(0)
         this.fade = new Animated.Value(1)
         this.state = {
+            imageH: 0,
             backButton: false,
             modalVisible: false,
             imgIndex: 0,
@@ -35,7 +37,11 @@ export default class Image1 extends Component{
 
         }
     }
-    
+    componentWillMount(){
+        this.setState({
+            imageH: width*(Image.resolveAssetSource(imgArr[0].image).height/Image.resolveAssetSource(imgArr[0].image).width)
+        })      
+    }
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
     }
@@ -54,7 +60,8 @@ export default class Image1 extends Component{
         this.showUndo()
         setTimeout(() => {this.setState({imgIndex: (
                 this.state.imgIndex+1)%3, 
-                inAnimation: false, disable: false}), 
+                inAnimation: false, disable: false,
+                imageH: width*(Image.resolveAssetSource(imgArr[(this.state.imgIndex+1)%3].image).height/Image.resolveAssetSource(imgArr[(this.state.imgIndex+1)%3].image ).width)}), 
             this.movingBackImage(), this.fadeIn()},  300)
     }
     movingImage = () => {
@@ -72,7 +79,7 @@ export default class Image1 extends Component{
     }
     movingBackImage = () => {
         Animated.timing(this.moveImage, 
-            {toValue: {x: 0, y: (height*0.5 - width*0.5) }}).start()
+            {toValue: {x: 0, y: (height*0.5 - this.state.imageH*0.5) }}).start()
         this.imageScale.setValue(0)
     }
     fadeIn = () => {
@@ -145,25 +152,28 @@ export default class Image1 extends Component{
             {!this.state.inAnimation ?
                 <View style={styles.pos}>
                     <ImageZoom cropWidth={width} cropHeight={height}
-                        imageWidth={width} imageHeight={width} >
+                        imageWidth={width} imageHeight={this.state.imageH} >
                         <Animated.Image 
-                            style={[styles.im1, 
-                            {opacity: this.fade,
+                            style={ 
+                            {width: width,
+                            height: this.state.imageH,
+                            opacity: this.fade,
                             transform: [{
                                 scale: this.fade.interpolate({
                                 inputRange: [0, 1],
                                 outputRange: [0.85, 1]
-                            })}]}]} 
+                            })}]}} 
                             source={imgArr[this.state.imgIndex].image}/>
                     </ImageZoom>
                 </View>
                 
             :  <View style={styles.pos}> 
                     <Animated.Image 
-                        style={[styles.im2, 
-                        {transform: [
-                            {scaleX: this.state.sizeX},
-                            {scaleY: this.state.sizeY}
+                        style={[{width: width,
+                            height: this.state.imageH,
+                            transform: [
+                                {scaleX: this.state.sizeX},
+                                {scaleY: this.state.sizeY}
                         ]},
                         this.moveImage.getLayout()]} 
                         source={imgArr[this.state.imgIndex].image}/> 
@@ -199,16 +209,6 @@ export default class Image1 extends Component{
     )}
 }
 const styles = StyleSheet.create({
-    im1: {
-        width: width,
-        height: width,
-    },
-    im2: {
-        top:(height*0.5 - width*0.5),
-        alignSelf: 'center',
-        width: width,
-        height: width,
-    },
     pos: {
         justifyContent: 'center',
         alignItems: 'center',
