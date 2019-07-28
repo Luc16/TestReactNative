@@ -12,7 +12,6 @@ export default class testapp extends Component{
   constructor(props){
     super(props)
     const firebaseConfig = {
-      apiKey: "AIzaSyCAkhjtBGz7fbqJJLVey7UBngCraOZ_ffQ",
       authDomain: "testapp-16d9b.firebaseapp.com",
       databaseURL: "https://testapp-16d9b.firebaseio.com",
       projectId: "testapp-16d9b",
